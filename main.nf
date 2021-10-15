@@ -47,12 +47,13 @@ def vcf_dict     = new JsonSlurper.parseText(vcf_files)
 
 vcf_geno_ch = Channel.of(1..22) 
     | map {a -> [a, 
-        vcf_dict[a.toString()]."vcf", 
-        vcf_dict[a.toString()]."idx",
+        vcf_dict[a.toString()], 
+        vcf_dict[a.toString()] + ".tbi",
         vcf_dict."meta"."cohort",
-        vcf_dict."meta"."population"]
+        vcf_dict."meta"."population",
+        vcf_dict."meta"."snps"]
 
-plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}")
+plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}", checkIfExists: true)
 
 workflow {
 
@@ -86,6 +87,6 @@ workflow {
     // Make Manhattan and qq-plots
 
     assoc_out_ch \
-    combine(Channel.of("${target_prefix}_${params.binary}")) \
-    plot_assoc()
+    | combine(Channel.of("${target_prefix}_${params.binary}")) \
+    | plot_assoc()
 }
