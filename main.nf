@@ -19,8 +19,9 @@ def help_message() {
     --bfile <genotypes_pruned> [A pruned set of genotypes to construct a GRM in SAIGE] (Default: iPSYCH2012 EurUnrel)
     --genotypes <file.json> [A .json file of per chromosome VCF files to perform association analysis] (Default: iPSYCH2012.json)
     --pheno_cov <file.pheno> [A file of phenotype and covariates] (Default: Phenotype: skizo2015I | Covariates: Age, Gender, first 10 PCs)
-    --binary <T/F> [Is the outcome dichotomous?] (Default: T)
-    --phenotype <Phenotype Name in the pheno_cov file, will also be used as output prefix> (Default: skizo2015I)
+    --outcome <binary/quantitative> [Is the outcome binary or quantitative?] (Default: binary)
+    --phenotype <skizo2015I> [Phenotype Name in the pheno_cov file, will also be used as output prefix] (Default: skizo2015I)
+    --loco <TRUE/FALSE> [Leave one chromosome out when building GRM?] (Default: TRUE) 
     --help prints this message
     """
 }
@@ -37,8 +38,9 @@ IBP - MLM - ASSOCIATION PIPELINE V1.0 - NF
 PLINK genotypes for GRM                  : $params.bfile
 VCF genotypes for association tests      : $params.genotypes
 File of phenotype to test and covariates : $params.pheno_cov
-Is the outcome binary?                   : $params.binary
+Is the outcome binary?                   : $params.outcome
 Name of the phenotype                    : $params.phenotype
+Leave one chromosome out for GRM?        : $params.loco
 ================================================================================================
 """
 
@@ -64,7 +66,7 @@ workflow {
     | combine(params.phenotype) \
     | combine(Channel.of("Age,Gender,AgeSq,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10")) \
     | combine(Channel.of("IID")) \
-    | combine(Channel.of(params.binary)) \
+    | combine(Channel.of(params.outcome)) \
     | combine(Channel.of(target_prefix)) \
     | fit_null_glmm() \
     | set { saige_null_glmm_ch }
