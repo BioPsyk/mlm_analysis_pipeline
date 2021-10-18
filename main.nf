@@ -58,16 +58,19 @@ vcf_geno_ch = Channel.of(1..22)
 plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}", checkIfExists: true)
 
 workflow {
-
     // Fit the null GLMM in SAIGE
 
     plink_geno_ch \
-    | combine(params.pheno_cov) \
-    | combine(params.phenotype) \
+    | combine(Channel.of(params.pheno_cov)) \
+    | combine(Channel.of(params.phenotype)) \
     | combine(Channel.of("Age,Gender,AgeSq,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10")) \
     | combine(Channel.of("IID")) \
     | combine(Channel.of(params.outcome)) \
-    | combine(Channel.of(target_prefix)) \
+    | combine(Channel.of(params.n_threads)) \
+    | combine(Channel.of(params.loco)) \
+    | combine(Channel.of(params.overwrite)) \
+    | combine(Channel.of(params.inv_normalize_qt)) \
+    | combine(Channel.of(params.null_glmm_script_path)) \
     | fit_null_glmm() \
     | set { saige_null_glmm_ch }
 
@@ -78,8 +81,9 @@ workflow {
     | combine(Channel.of("DS")) \
     | combine(Channel.of("0.001")) \
     | combine(Channel.of("1")) \
-    | combine(Channel.of(params.sample)) \
-    | combine(saige_null_glmm_ch)
+    | combine(Channel.of(params.outcome)) \
+    | combine(Channel.of(phenotype)) \
+    | combine(saige_null_glmm_ch) \
     | run_assoc_tets() \
     | collectFile(name: "${target_prefix}_${params.binary}.assoc",
     keepHeader: true,
