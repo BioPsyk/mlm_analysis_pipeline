@@ -51,6 +51,7 @@ vcf_geno_ch = Channel.of(1..22)
     | map {a -> [a, 
         vcf_dict[a.toString()], 
         vcf_dict[a.toString()] + ".tbi",
+        vcf_dict[a.toString()] + ".csi",
         vcf_dict."meta"."cohort",
         vcf_dict."meta"."population",
         vcf_dict."meta"."snps"]
@@ -84,6 +85,7 @@ workflow {
     | combine(Channel.of(params.outcome)) \
     | combine(Channel.of(phenotype)) \
     | combine(saige_null_glmm_ch) \
+    | combine(Channel.of(params.single_variant_assoc_script_path))
     | run_assoc_tets() \
     | collectFile(name: "${target_prefix}_${params.binary}.assoc",
     keepHeader: true,
@@ -94,5 +96,6 @@ workflow {
 
     assoc_out_ch \
     | combine(Channel.of("${target_prefix}_${params.binary}")) \
+    | combine(Channel.of(params.plot_assoc_path)) \
     | plot_assoc()
 }

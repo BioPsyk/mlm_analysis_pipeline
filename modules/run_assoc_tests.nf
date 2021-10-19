@@ -3,10 +3,14 @@
 nextflow.enable.dsl = 2
 
 process run_assoc_tests {
+    label 'mod_mem'
+    publishDir launchDir
+
     input:
         tuple val(chr),
             path(vcf),
-            path(vcf_idx),
+            path(vcf_idx_tbi),
+            path(vcf_idx_csi),
             val(cohort),
             val(population),
             val(snps),
