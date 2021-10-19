@@ -3,6 +3,8 @@
 nextflow.enable.dsl = 2
 
 process fit_null_glmm {
+    label 'big_mem'
+    
     input:
         tuple val(bfile),
             path(bed),

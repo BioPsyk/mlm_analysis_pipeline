@@ -83,9 +83,9 @@ workflow {
     | combine(Channel.of("0.001")) \
     | combine(Channel.of("1")) \
     | combine(Channel.of(params.outcome)) \
-    | combine(Channel.of(phenotype)) \
+    | combine(Channel.of(params.phenotype)) \
     | combine(saige_null_glmm_ch) \
-    | combine(Channel.of(params.single_variant_assoc_script_path))
+    | combine(Channel.of(params.single_variant_assoc_script_path)) \
     | run_assoc_tets() \
     | collectFile(name: "${target_prefix}_${params.binary}.assoc",
     keepHeader: true,
