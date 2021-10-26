@@ -73,7 +73,6 @@ workflow {
     | combine(Channel.of(params.outcome)) \
     | combine(Channel.of(params.n_threads)) \
     | combine(Channel.of(params.loco)) \
-    | combine(Channel.of(params.overwrite)) \
     | combine(Channel.of(params.inv_normalize_qt)) \
     | combine(Channel.of(params.null_glmm_script_path)) \
     | fit_null_glmm \
