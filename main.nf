@@ -58,6 +58,7 @@ vcf_geno_ch = Channel.of(1..22)
         vcf_dict."meta"."snps"]}
 
 plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}", 
+    size: 3,
     checkIfExists: true,
     flat: true)
 
