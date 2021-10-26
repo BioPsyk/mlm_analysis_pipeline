@@ -39,6 +39,7 @@ process fit_null_glmm {
             --LOCO=${loco} \
             --IsOverwriteVarianceRatioFile=TRUE
         """
+    }
     else {
         """
         Rscript step1_fitNULLGLMM.R \
