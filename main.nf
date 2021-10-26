@@ -90,7 +90,7 @@ workflow {
     | combine(saige_null_glmm_ch) \
     | combine(Channel.of(params.single_variant_assoc_script_path)) \
     | run_assoc_tests \
-    | collectFile(name: "${target_prefix}_${params.binary}.assoc",
+    | collectFile(name: "${target_prefix}_${params.phenotype}.assoc",
     keepHeader: true,
     skip: 1) \
     | set { assoc_out_ch }
@@ -98,7 +98,7 @@ workflow {
     // Make Manhattan and qq-plots
 
     assoc_out_ch \
-    | combine(Channel.of("${target_prefix}_${params.binary}")) \
+    | combine(Channel.of("${target_prefix}_${params.phenotype}")) \
     | combine(Channel.of(params.plot_assoc_path)) \
     | plot_assoc
 }
