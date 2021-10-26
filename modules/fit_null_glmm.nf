@@ -21,8 +21,8 @@ process fit_null_glmm {
             path(null_glmm_script)
 
     output:
-        tuple path("${bfile}_${outcome}.rda"),
-            path("${bfile}_${outcome}.varianceRatio.txt")
+        tuple path("${bfile}_${pheno_name}.rda"),
+            path("${bfile}_${pheno_name}.varianceRatio.txt")
 
     script:
     if(outcome == "binary") {
@@ -34,7 +34,7 @@ process fit_null_glmm {
             --covarColList=${cov_cols} \
             --sampleIDColinphenoFile=${id_col} \
             --traitType=${outcome} \
-            --outputPrefix=${bfile}_${outcome} \
+            --outputPrefix=${bfile}_${pheno_name} \
             --nThreads=${n_threads} \
             --LOCO=${loco} \
             --IsOverwriteVarianceRatioFile=TRUE
@@ -48,9 +48,9 @@ process fit_null_glmm {
             --phenoCol=${pheno_name} \
             --covarColList=${cov_cols} \
             --sampleIDColinphenoFile=${id_col} \
-            --traitType=${bfile}_${outcome} \
+            --traitType=${outcome} \
             --invNormalize=${inv_normalize_qt} \
-            --outputPrefix=${out_prefix} \
+            --outputPrefix=${bfile}_${pheno_name} \
             --nThreads=${n_threads} \
             --LOCO=${loco} \
             --tauInit=1,0
