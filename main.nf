@@ -45,7 +45,7 @@ Leave one chromosome out for GRM?        : $params.loco
 """
 
 String vcf_files = new File(params.genotypes).text
-def vcf_dict     = new JsonSlurper.parseText(vcf_files) 
+def vcf_dict     = new JsonSlurper().parseText(vcf_files) 
 
 vcf_geno_ch = Channel.of(1..22) 
     | map {a -> [a, 
