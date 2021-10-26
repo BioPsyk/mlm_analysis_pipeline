@@ -72,7 +72,7 @@ workflow {
     | combine(Channel.of(params.overwrite)) \
     | combine(Channel.of(params.inv_normalize_qt)) \
     | combine(Channel.of(params.null_glmm_script_path)) \
-    | fit_null_glmm() \
+    | fit_null_glmm \
     | set { saige_null_glmm_ch }
 
     // Perform single variant association tests
@@ -86,7 +86,7 @@ workflow {
     | combine(Channel.of(params.phenotype)) \
     | combine(saige_null_glmm_ch) \
     | combine(Channel.of(params.single_variant_assoc_script_path)) \
-    | run_assoc_tets() \
+    | run_assoc_tests \
     | collectFile(name: "${target_prefix}_${params.binary}.assoc",
     keepHeader: true,
     skip: 1) \
@@ -97,5 +97,5 @@ workflow {
     assoc_out_ch \
     | combine(Channel.of("${target_prefix}_${params.binary}")) \
     | combine(Channel.of(params.plot_assoc_path)) \
-    | plot_assoc()
+    | plot_assoc
 }
