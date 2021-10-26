@@ -57,7 +57,9 @@ vcf_geno_ch = Channel.of(1..22)
         vcf_dict."meta"."population",
         vcf_dict."meta"."snps"]}
 
-plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}", checkIfExists: true)
+plink_geno_ch = Channel.fromFilePairs(params.bfile + ".{bed,bim,fam}", 
+    checkIfExists: true,
+    flat: true)
 
 workflow {
     // Fit the null GLMM in SAIGE
