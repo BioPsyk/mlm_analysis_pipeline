@@ -12,8 +12,8 @@ process plot_assoc {
             path(plot_assoc_path)
 
     output:
-        path "${out_prefix}_Manhattan.png",
-        path "${out_prefix}_QQ.png"
+        path("${out_prefix}_Manhattan.png")
+        path("${out_prefix}_QQ.png")
 
     script:
     """

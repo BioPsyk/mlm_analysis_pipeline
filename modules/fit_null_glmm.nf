@@ -21,8 +21,8 @@ process fit_null_glmm {
             path(null_glmm_script)
 
     output:
-        tuple path "${bfile}_${outcome}.rda",
-            path "${bfile}_${outcome}.varianceRatio.txt"
+        tuple path("${bfile}_${outcome}.rda"),
+            path("${bfile}_${outcome}.varianceRatio.txt")
 
     script:
     if(outcome == "binary") {
