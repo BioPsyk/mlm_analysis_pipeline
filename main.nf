@@ -37,7 +37,7 @@ IBP - MLM - ASSOCIATION PIPELINE V1.0 - NF
 ================================================================================================
 PLINK genotypes for GRM                  : $params.bfile
 VCF genotypes for association tests      : $params.genotypes
-File of phenotype to test and covariates : $params.pheno_cov
+File of phenotype to test and covariates : $params.pheno
 Is the outcome binary?                   : $params.outcome
 Name of the phenotype                    : $params.phenotype
 Leave one chromosome out for GRM?        : $params.loco
@@ -65,7 +65,7 @@ workflow {
     // Fit the null GLMM in SAIGE
 
     plink_geno_ch \
-    | combine(Channel.of(params.pheno_cov)) \
+    | combine(Channel.of(params.pheno)) \
     | combine(Channel.of(params.phenotype)) \
     | combine(Channel.of("Age,Gender,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10")) \
     | combine(Channel.of("IID")) \
