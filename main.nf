@@ -85,7 +85,6 @@ workflow {
     | combine(Channel.of("DS")) \
     | combine(Channel.of("0.001")) \
     | combine(Channel.of("1")) \
-    | combine(Channel.of(params.outcome)) \
     | combine(Channel.of(params.phenotype)) \
     | combine(saige_null_glmm_ch) \
     | combine(Channel.of(params.single_variant_assoc_script_path)) \
