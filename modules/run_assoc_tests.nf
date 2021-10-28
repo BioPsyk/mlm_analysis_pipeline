@@ -17,10 +17,9 @@ process run_assoc_tests {
             val(dose_col),
             val(min_maf),
             val(min_mac),
+            val(pheno_name),
             path(saige_null_glmm),
             path(saige_variance_ratio),
-            val(outcome),
-            val(pheno_name),
             path(assoc_test_script_path)
 
     output:
