@@ -29,7 +29,7 @@ process run_assoc_tests {
     """
     Rscript step2_SPAtests.R \
         --vcfFile=$vcf \
-        --vcfFileIndex=$vcf_idx \
+        --vcfFileIndex=$vcf_idx_tbi \
         --vcfField=$dose_col \
         --chrom=$chr \
         --minMAF=$min_maf \
