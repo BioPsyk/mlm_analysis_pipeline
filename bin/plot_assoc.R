@@ -3,19 +3,18 @@
 require(dplyr, quietly = TRUE)
 require(qqman, quietly = TRUE)
 require(ggplot2, quietly = TRUE)
+require(data.table, quietly = TRUE)
 
 args = commandArgs(trailingOnly = TRUE)
-assoc = read.table(args[1], 
-                        header = TRUE, 
-                        stringsAsFactors = FALSE)
+assoc = fred(args[1], header = TRUE) 
 out_prefix = args[2]
 
 if("Is.SPA.converge" %in% colnames(assoc)) {
-    assoc = assoc %>% filter(Is.SPA.converge == "TRUE")
+    assoc = assoc %>% filter(Is.SPA.converge == 1)
 }
 
 if("Is.converge" %in% colnames(assoc)) {
-    assoc = assoc %>% filter(Is.converge == "TRUE")
+    assoc = assoc %>% filter(Is.converge == 1)
 }
 assoc = assoc %>% select(CHR, SNPID, POS, p.value)
 colnames(assoc) = c("CHR", "SNP", "BP", "P")
