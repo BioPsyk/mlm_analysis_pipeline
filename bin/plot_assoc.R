@@ -6,7 +6,7 @@ require(ggplot2, quietly = TRUE)
 require(data.table, quietly = TRUE)
 
 args = commandArgs(trailingOnly = TRUE)
-assoc = fred(args[1], header = TRUE) 
+assoc = fread(args[1], header = TRUE) 
 out_prefix = args[2]
 
 if("Is.SPA.converge" %in% colnames(assoc)) {
