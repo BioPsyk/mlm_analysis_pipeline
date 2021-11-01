@@ -3,7 +3,7 @@
 nextflow.enable.dsl = 2
 
 process plot_assoc {
-    label 'low_mem'
+    label 'mod_mem'
     publishDir launchDir
 
     input:
