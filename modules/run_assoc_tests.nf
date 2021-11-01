@@ -36,7 +36,7 @@ process run_assoc_tests {
         --minMAC=$min_mac \
         --GMMATmodelFile=$saige_null_glmm \
         --varianceRatioFile=$saige_variance_ratio \
-        --SAIGEOutputFile=${cohort}_${population}_${pheno_name}.SAIGE.vcf.dosage.txt \
+        --SAIGEOutputFile=${cohort}_${population}_${pheno_name}_${chr}.SAIGE.vcf.dosage.txt \
         --numLinesOutput=2 \
         --IsOutputAFinCaseCtrl=TRUE
     """
