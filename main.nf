@@ -91,7 +91,7 @@ workflow {
     | run_assoc_tests \
     | collectFile(name: "${target_prefix}_${params.phenotype}.assoc",
     keepHeader: true,
-    sgtoreDir: launchDir,
+    storeDir: launchDir,
     skip: 1) \
     | set { assoc_out_ch }
 
