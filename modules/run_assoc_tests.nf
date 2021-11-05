@@ -23,7 +23,7 @@ process run_assoc_tests {
             path(assoc_test_script_path)
 
     output:
-        path("${cohort}_${population}_${pheno_name}.SAIGE.vcf.dosage.txt")
+        path("${cohort}_${population}_${pheno_name}_${chr}.SAIGE.vcf.dosage.txt")
 
     script:
     """
