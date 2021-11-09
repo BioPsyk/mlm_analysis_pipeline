@@ -3,7 +3,7 @@
 nextflow.enable.dsl = 2
 
 process run_assoc_tests {
-    label 'mod_mem'
+    label 'big_mem'
     publishDir launchDir
 
     input:
