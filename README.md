@@ -30,8 +30,8 @@ I recommend making changes here for project name on slurm etc before running the
 ### Helpful tip
 
 Nextflow recommends not launching more than one workflow from the same directory. </br>
-So if you are launching the pipeline on multiple phenotypes or datasets, create</br>
-and use `--chdir` option in the `sbatch` command to specify a launch directory
+So if you are launching the pipeline on multiple phenotypes or datasets, create new </br>
+directories and use `--chdir` option in the `sbatch` command to specify a launch directory
 
 ### Expected outputs
 
