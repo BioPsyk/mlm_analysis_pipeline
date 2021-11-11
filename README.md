@@ -17,7 +17,7 @@ The pipeline can be launched from your working directory using the following com
         --genotypes <path to json file containing per chromosome VCF.gz files> \
         --phenoCovFile <path to file containing the phenotype and covariates> \
         --outcome <binary/continuous> \
-        --phenotype <phenotype col name in the supplied phenoCovFile>
+        --phenotype <phenotype col name in the supplied phenoCovFile> \
         -w <path to where you want the nextflow work directory to be present>
 
 Running `nextflow run main.nf -h` displays the help message
