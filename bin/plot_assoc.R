@@ -18,12 +18,12 @@ if("Is.converge" %in% colnames(assoc)) {
 }
 assoc = assoc %>% select(CHR, SNP, BP, P)
 
-png(paste(out_prefix, "Manhattan.png", annotatePval = 5e-8, sep = "_"),
+png(paste(out_prefix, "Manhattan.png", sep = "_"),
     width = 8, 
     height = 5, 
     units = "in", 
     res = 300)
-manhattan(assoc)
+manhattan(assoc, annotatePval = 5e-8)
 dev.off()
 
 png(paste(out_prefix, "QQ.png", sep = "_"), 
