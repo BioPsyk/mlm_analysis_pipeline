@@ -19,7 +19,7 @@ if("Is.converge" %in% colnames(assoc)) {
 assoc = assoc %>% select(CHR, SNPID, POS, p.value)
 colnames(assoc) = c("CHR", "SNP", "BP", "P")
 
-png(paste(out_prefix, "Manhattan.png", sep = "_"),
+png(paste(out_prefix, "Manhattan.png", annotatePval = 5e-8, sep = "_"),
     width = 8, 
     height = 5, 
     units = "in", 
@@ -32,5 +32,5 @@ png(paste(out_prefix, "QQ.png", sep = "_"),
     height = 5, 
     units = "in", 
     res = 300)
-qq(assoc$P)
+qq(assoc$P, cex = 1, pch = 18)
 dev.off()
