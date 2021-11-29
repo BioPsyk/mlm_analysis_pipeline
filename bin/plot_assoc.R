@@ -16,7 +16,7 @@ if("Is.SPA.converge" %in% colnames(assoc)) {
 if("Is.converge" %in% colnames(assoc)) {
     assoc = assoc %>% filter(Is.converge == 1)
 }
-assoc = assoc %>% select(CHR, SNPID, POS, `p.value`)
+assoc = assoc %>% select(CHR, SNPID, POS, p.value)
 colnames(assoc) = c("CHR", "SNP", "BP", "P")
 
 png(paste(out_prefix, "Manhattan.png", sep = "_"),
