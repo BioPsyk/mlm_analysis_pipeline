@@ -68,7 +68,7 @@ workflow {
     plink_geno_ch \
     | combine(Channel.of(params.phenoCovFile)) \
     | combine(Channel.of(params.phenotype)) \
-    | combine(Channel.of("Age,gender,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10")) \
+    | combine(Channel.of("Age,Sex,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10")) \
     | combine(Channel.of("IID")) \
     | combine(Channel.of(params.outcome)) \
     | combine(Channel.of(params.n_threads)) \
