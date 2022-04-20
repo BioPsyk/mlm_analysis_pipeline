@@ -18,6 +18,7 @@ The pipeline can be launched from your working directory using the following com
         --phenoCovFile <path to file containing the phenotype and covariates> \
         --outcome <binary/continuous> \
         --phenotype <phenotype col name in the supplied phenoCovFile> \
+        --covariates <comma separated list of covariates to include in the model>
         -w <path to where you want the nextflow work directory to be present>
 
 Running `nextflow run main.nf -h` displays the help message
